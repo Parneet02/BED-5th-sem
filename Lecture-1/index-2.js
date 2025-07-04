@@ -27,7 +27,7 @@ function someTask(){
 someTask().then((data)=>{
     console.log(data);
 })
-.catch((err)=>{ //call back register
+.catch((err)=>{             //call back register
     console.log(err)
 })
 process.nextTick(()=>{
