@@ -1,24 +1,31 @@
-const express =require("express")
-const app= express();
-app.use(express.static(__dirname+"/public"))
-app.use(express.urlencoded({extended:true}))
-// app.get("/",(req,res)=>{
-//     res.sendFile(__dirname+"/index.html")
-// })
+const express = require("express");
+const app = express();
+const fs = require("fs");
 
-// app.get("/about.html",(req,res)=>{
-//     res.sendFile(__dirname+"/about.html")
-// })
-app.post("/addUser",(req,res)=>{
-    console.log(req.body)
-    let username=req.body.username;
-    let password = req.body.password
-    res.json({
-        username,
-        password
-    })
-    res.send("check terminal for req.body")
-})
-app.listen(2412,()=>{
-    console.log("server started")
-})
+app.use(express.static(__dirname + "/public"));
+app.use(express.urlencoded({ extended: true }));
+
+app.post("/addUser", (req, res) => {
+  const newUser = {
+    username: req.body.username,
+    password: req.body.password,
+  };
+
+  fs.readFile("./users.txt", "utf-8", (err, data) => {
+    let users = [];
+    if (!err && data) {
+      users = JSON.parse(data);
+    }
+
+    users.push(newUser);
+
+    fs.writeFile("./users.txt", JSON.stringify(users, null, 2), (err) => {
+      //if (err) return res.status(500).send({ message: "Error saving user" });
+    res.send("User registered successfully!");
+    });
+  });
+});
+
+app.listen(2412, () => {
+  console.log("Server started");
+});
