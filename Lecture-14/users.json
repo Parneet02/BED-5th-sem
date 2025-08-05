@@ -1,0 +1,14 @@
+[
+    {
+        "id":"1",
+        "name":"Parneet",
+        "username":"parneet2412",
+        "role":"Admin"
+    },
+    {
+        "id":"2",
+        "name":"bani",
+        "username":"bani2412",
+        "role":"user"
+    }
+]
