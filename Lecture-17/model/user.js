@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   name: String,
   rollno: String,
-  date: Date
+  date: Date,
 });
 
 module.exports = mongoose.model("User", userSchema);

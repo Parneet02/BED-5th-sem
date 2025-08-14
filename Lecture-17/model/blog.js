@@ -3,6 +3,6 @@ const Schema = mongoose.Schema;
 const BlogPost = new Schema({
   title: String,
   body: String,
-  date: Date
+  date: Date,
 });
 module.exports=mongoose.model('Blogs', BlogPost)
